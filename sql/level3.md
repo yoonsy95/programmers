@@ -50,6 +50,20 @@ where rownum<=3;
 ### 오랜 기간 보호한 동물(2)
 
 ```sql
+-- mySQL
+SELECT o.animal_id, o.name
+from animal_outs o
+join animal_ins i on i.animal_id=o.animal_id
+order by (i.datetime - o.datetime)
+limit 2;
 
+-- Oracle
+select *
+from (
+    SELECT o.animal_id, o.name
+    from animal_outs o
+    join animal_ins i on i.animal_id=o.animal_id
+    order by (i.datetime - o.datetime))
+where rownum<3;
 ```
 
